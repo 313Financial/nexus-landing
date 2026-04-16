@@ -328,7 +328,7 @@ nav {
 .mock-main { flex: 1; padding: 16px; overflow: hidden; }
 .mock-stats {
   display: grid; grid-template-columns: repeat(4,1fr); gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .mock-stat {
   background: var(--bg3);
@@ -581,6 +581,8 @@ section { position: relative; }
   padding: 36px 32px;
   position: relative;
   transition: transform .2s, box-shadow .2s;
+  display: flex;
+  flex-direction: column;
 }
 .pricing-card:hover {
   transform: translateY(-4px);
@@ -643,7 +645,8 @@ section { position: relative; }
   border-bottom: 1px solid var(--border);
   font-weight: 300;
 }
-.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px;   flex-grow: 1;
+}
 .plan-feature {
   display: flex; align-items: center; gap: 10px;
   font-size: 13px;
@@ -669,6 +672,7 @@ section { position: relative; }
   transition: all .15s;
   text-align: center;
   display: block;
+  margin-top: auto;
 }
 .plan-btn-gold { background: var(--gold); color: var(--bg); border: none; }
 .plan-btn-gold:hover { background: var(--gold2); }
@@ -916,35 +920,63 @@ footer {
             <div class="mock-logo-name"><span>Nexus</span> CRM</div>
             <div style="font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1px;margin-top:2px">COMMERCIAL PLATFORM</div>
           </div>
-          <div class="mock-nav-item active"><div class="mock-nav-dot"></div>Dashboard</div>
-          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Clients</div>
-          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Pipeline</div>
-          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Tasks</div>
-          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Follow-ups</div>
-          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Activity</div>
-          <div class="mock-nav-item"><div class="mock-nav-dot"></div>Nexus Hub</div>
+          <div class="mock-nav">
+            <div class="mock-nav-lbl">MENU</div>
+            <div class="mock-nav-item active"><div class="mock-nav-dot" style="background:var(--gold)"></div>Dashboard</div>
+            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Clients</div>
+            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Pipeline</div>
+            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Tasks</div>
+            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Follow-ups</div>
+            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Activity</div>
+            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Nexus Hub</div>
+            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Twenty7Tec</div>
+            <div class="mock-nav-lbl" style="margin-top:10px">MANAGEMENT</div>
+            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Team Overview</div>
+          </div>
         </div>
         <div class="mock-main">
           <div class="mock-stats">
             <div class="mock-stat">
               <div class="mock-stat-accent" style="background:var(--gold)"></div>
-              <div class="mock-stat-val" style="color:var(--gold)">£6.8M</div>
-              <div class="mock-stat-lbl">Pipeline</div>
+              <div class="mock-stat-val" style="color:var(--gold)">£142K</div>
+              <div class="mock-stat-lbl">MTD Lending</div>
             </div>
             <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:var(--ok)"></div>
-              <div class="mock-stat-val" style="color:var(--ok)">47</div>
-              <div class="mock-stat-lbl">Clients</div>
+              <div class="mock-stat-accent" style="background:var(--gold)"></div>
+              <div class="mock-stat-val" style="color:var(--gold)">£4.2K</div>
+              <div class="mock-stat-lbl">MTD Commission</div>
             </div>
             <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:var(--info)"></div>
-              <div class="mock-stat-val" style="color:var(--info)">8</div>
+              <div class="mock-stat-accent" style="background:#2c80bf"></div>
+              <div class="mock-stat-val">£1.8M</div>
+              <div class="mock-stat-lbl">Q2 Lending</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-accent" style="background:#2c80bf"></div>
+              <div class="mock-stat-val">£28K</div>
+              <div class="mock-stat-lbl">Q2 Commission</div>
+            </div>
+          </div>
+          <div class="mock-stats">
+            <div class="mock-stat">
+              <div class="mock-stat-accent" style="background:#27ae60"></div>
+              <div class="mock-stat-val">£6.8M</div>
+              <div class="mock-stat-lbl">Pipeline Commission</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-accent" style="background:#27ae60"></div>
+              <div class="mock-stat-val">47</div>
+              <div class="mock-stat-lbl">Total Clients</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-accent" style="background:#2c80bf"></div>
+              <div class="mock-stat-val">5</div>
+              <div class="mock-stat-lbl">MTD Deals</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-accent" style="background:#e67e22"></div>
+              <div class="mock-stat-val">8</div>
               <div class="mock-stat-lbl">Follow Ups Due</div>
-            </div>
-            <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:var(--lav)"></div>
-              <div class="mock-stat-val" style="color:var(--lav)">12</div>
-              <div class="mock-stat-lbl">Completions</div>
             </div>
           </div>
           <div class="mock-grid">
