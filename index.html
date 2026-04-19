@@ -354,6 +354,60 @@ nav {
 .mock-task:last-child { border-bottom: none; }
 .mock-checkbox { width: 11px; height: 11px; border-radius: 2px; border: 1px solid var(--border2); flex-shrink: 0; margin-top: 1px; }
 
+
+/* ── Contact Form ──────────────────────────────────────────── */
+.contact-form {
+  max-width: 520px;
+  margin: 36px auto 0;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.form-row { display: flex; gap: 14px; }
+.form-row > * { flex: 1; }
+.form-field {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border-color .2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.form-field::placeholder { color: var(--muted); }
+.form-field:focus { border-color: var(--gold); }
+textarea.form-field { resize: vertical; min-height: 90px; }
+.form-submit {
+  padding: 14px 32px;
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+  width: 100%;
+}
+.form-submit:hover { background: var(--gold2); transform: translateY(-1px); }
+.form-submit:disabled { opacity: .6; cursor: default; transform: none; }
+.form-success {
+  text-align: center;
+  padding: 32px;
+  color: var(--ok);
+  font-family: var(--serif);
+  font-size: 22px;
+}
+.form-success-sub {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--text2);
+  margin-top: 8px;
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -994,6 +1048,7 @@ footer {
   .mock-sidebar { display: none; }
   .mock-body { height: 300px; }
   .pm-cols { overflow-x: auto; }
+  .form-row { flex-direction: column; }
 }
 </style>
 </head>
@@ -1453,7 +1508,7 @@ footer {
           <li>Notes &amp; follow-up engine</li>
           <li>Companies House lookup</li>
         </ul>
-        <a class="plan-btn" href="#cta">Start Free Trial</a>
+        <a class="plan-btn" href="#cta">Get started</a>
       </div>
       <!-- Team -->
       <div class="pricing-card featured reveal">
@@ -1494,18 +1549,22 @@ footer {
 </section>
 
 <!-- ── CTA ────────────────────────────────────────────────────── -->
-<section class="cta-section">
+<section class="cta-section" id="cta">
   <div class="cta-glow"></div>
-  <h2 class="cta-h2 reveal">Ready to run your brokerage<br>the way it <em>should</em> work?</h2>
-  <p class="cta-sub reveal">Access the portal now. We’ll walk you through everything.</p>
-  <div class="cta-actions reveal">
-    <a href="https://portal.nexus-crm.co.uk" class="hero-btn-primary">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-      Access the portal
-    </a>
-    <a href="https://portal.nexus-crm.co.uk" class="hero-btn-secondary">Get in touch</a>
-  </div>
-  
+  <h2 class="cta-h2 reveal">Interested? <em>Let’s talk.</em></h2>
+  <p class="cta-sub reveal">Leave your details and we’ll be in touch to walk you through Nexus.</p>
+  <form class="contact-form reveal" id="contactForm">
+    <div class="form-row">
+      <input type="text" class="form-field" name="name" placeholder="Your name" required>
+      <input type="email" class="form-field" name="email" placeholder="Email address" required>
+    </div>
+    <div class="form-row">
+      <input type="text" class="form-field" name="company" placeholder="Company name">
+      <input type="tel" class="form-field" name="phone" placeholder="Phone (optional)">
+    </div>
+    <textarea class="form-field" name="message" placeholder="Tell us about your brokerage — how many advisers, what you’re looking for..."></textarea>
+    <button type="submit" class="form-submit">Request a demo</button>
+  </form>
 </section>
 
 <!-- ── Footer ──────────────────────────────────────────────────── -->
@@ -1529,6 +1588,34 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+</script>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('.form-submit');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  
+  const data = new FormData(form);
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/paulgray88@hotmail.co.uk', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    });
+    if (res.ok) {
+      form.innerHTML = '<div class="form-success">We\u2019ll be in touch.<div class="form-success-sub">Thanks for your interest in Nexus. We\u2019ll get back to you shortly.</div></div>';
+    } else {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  } catch(err) {
+    btn.textContent = 'Something went wrong — try again';
+    btn.disabled = false;
+  }
 });
 </script>
 </body>
