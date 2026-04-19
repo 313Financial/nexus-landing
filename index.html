@@ -316,7 +316,7 @@ nav {
 .mock-nav-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 .mock-main { flex: 1; padding: 16px; overflow: hidden; }
 .mock-stats {
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 10px;
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
   margin-bottom: 14px;
 }
 .mock-stat {
@@ -737,7 +737,7 @@ nav {
   background: var(--bg2);
   padding: 40px 48px;
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 0;
 }
 .stat-item {
@@ -796,7 +796,7 @@ section { position: relative; }
 .pricing-header { text-align: center; margin-bottom: 60px; }
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 20px;
   margin-top: 0;
 }
@@ -1341,7 +1341,7 @@ footer {
         <div class="mock-body" style="height:260px;">
           <div class="mock-main" style="padding:14px;">
             <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Team Overview</div>
-            <div class="mock-stats" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px;">
+            <div class="mock-stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:12px;">
               <div class="mock-stat" style="padding:10px;">
                 <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--gold),transparent)"></div>
                 <div class="mock-stat-val" style="color:var(--gold);font-size:18px;">£6.8M</div>
@@ -1367,7 +1367,7 @@ footer {
               <div class="mock-card" style="padding:10px;">
                 <div class="mock-card-title">By Adviser</div>
                 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:10px;color:var(--text2);border-bottom:1px solid var(--border);">
-                  <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div> P. Gray <div style="flex:1"></div> <span style="font-family:var(--mono);font-size:9px;color:var(--gold)">£3.2M</span>
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div> A. Carter <div style="flex:1"></div> <span style="font-family:var(--mono);font-size:9px;color:var(--gold)">£3.2M</span>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:10px;color:var(--text2);border-bottom:1px solid var(--border);">
                   <div style="width:6px;height:6px;border-radius:50%;background:var(--info);"></div> S. Mitchell <div style="flex:1"></div> <span style="font-family:var(--mono);font-size:9px;color:var(--info)">£2.4M</span>
@@ -1379,7 +1379,7 @@ footer {
               <div class="mock-card" style="padding:10px;">
                 <div class="mock-card-title">Recent Activity</div>
                 <div style="padding:3px 0;font-size:9px;color:var(--text2);border-bottom:1px solid var(--border);"><span style="color:var(--ok)">Completed</span> Summit Capital — S.M.</div>
-                <div style="padding:3px 0;font-size:9px;color:var(--text2);border-bottom:1px solid var(--border);"><span style="color:var(--info)">DIP</span> Keystone Property — P.G.</div>
+                <div style="padding:3px 0;font-size:9px;color:var(--text2);border-bottom:1px solid var(--border);"><span style="color:var(--info)">DIP</span> Keystone Property — A.C.</div>
                 <div style="padding:3px 0;font-size:9px;color:var(--text2);"><span style="color:var(--gold)">New</span> Webb Developments — R.K.</div>
               </div>
             </div>
@@ -1455,24 +1455,6 @@ footer {
         </ul>
         <a class="plan-btn" href="#cta">Start Free Trial</a>
       </div>
-      <!-- Growth -->
-      <div class="pricing-card featured reveal">
-        <div class="plan-name">Growth</div>
-        <div class="plan-price">
-          <div class="plan-amount">£149</div>
-          <div class="plan-period">/mo</div>
-        </div>
-        <div class="plan-desc">For firms scaling up. Everything in Solo plus team management, role-based access and team analytics.</div>
-        <ul class="plan-features">
-          <li>Everything in Solo</li>
-          <li>Up to 5 advisers</li>
-          <li>Master broker dashboard</li>
-          <li>Role-based access</li>
-          <li>Team-wide analytics</li>
-          <li>Priority support</li>
-        </ul>
-        <a class="plan-btn featured-btn" href="#cta">Start Free Trial</a>
-      </div>
       <!-- Team -->
       <div class="pricing-card featured reveal">
         <div class="plan-name">Team</div>
@@ -1501,11 +1483,10 @@ footer {
         <ul class="plan-features">
           <li>Everything in Team</li>
           <li>Unlimited advisers</li>
-          <li>White-label branding</li>
           <li>Network-wide reporting</li>
           <li>Dedicated onboarding</li>
         </ul>
-        <a href="mailto:paul.gray@synergy.finance" class="plan-btn">Talk to us</a>
+        <a href="https://portal.nexus-crm.co.uk" class="plan-btn">Talk to us</a>
       </div>
     </div>
     <p class="pricing-note reveal"><span>&#9672;</span> All plans include a guided setup session. No setup fees. No long-term contracts.</p>
@@ -1522,9 +1503,9 @@ footer {
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
       Access the portal
     </a>
-    <a href="mailto:paul.gray@synergy.finance" class="hero-btn-secondary">Get in touch</a>
+    <a href="https://portal.nexus-crm.co.uk" class="hero-btn-secondary">Get in touch</a>
   </div>
-  <div class="cta-note reveal">paul.gray@synergy.finance &nbsp;&middot;&nbsp; nexus-crm.co.uk</div>
+  
 </section>
 
 <!-- ── Footer ──────────────────────────────────────────────────── -->
@@ -1536,7 +1517,7 @@ footer {
   <div class="footer-links">
     <a href="#walkthrough">Product</a>
     <a href="#pricing">Pricing</a>
-    <a href="mailto:paul.gray@synergy.finance">Contact</a>
+    <a href="https://portal.nexus-crm.co.uk">Contact</a>
   </div>
   <div class="footer-right">&copy; 2025 313 Commercial Ltd</div>
 </footer>
