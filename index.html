@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nexus CRM — Built by a broker, for brokers</title>
-<meta name="description" content="The CRM built specifically for commercial finance brokers. Automated client intake, Companies House enrichment, pipeline management and instant notifications.">
+<meta name="description" content="The CRM built specifically for commercial finance brokers. Automated client intake, pipeline management, follow-ups and real-time notifications.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ── Reset & Base ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,11 +53,10 @@ a { color: inherit; text-decoration: none; }
 /* ── Noise & ambient ──────────────────────────────────────────── */
 body::before {
   content: '';
-  position: fixed; inset: 0; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 180px;
+  position: fixed; inset: 0; z-index: 9999;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ── Nav ──────────────────────────────────────────────────────── */
@@ -94,15 +94,6 @@ nav {
   letter-spacing: 0.2px;
 }
 .nav-wordmark span { color: var(--gold); }
-.nav-tagline {
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--muted);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-left: 4px;
-  margin-top: 2px;
-}
 .nav-links {
   display: flex; align-items: center; gap: 32px;
 }
@@ -141,59 +132,55 @@ nav {
   color: var(--bg);
   cursor: pointer;
   transition: background .15s;
-  letter-spacing: 0.2px;
 }
 .btn-gold:hover { background: var(--gold2); }
 
 /* ── Hero ──────────────────────────────────────────────────────── */
 .hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 140px 48px 80px;
   text-align: center;
-  padding: 120px 48px 80px;
+  position: relative;
   overflow: hidden;
 }
 .hero-glow-left {
-  position: absolute; top: -100px; left: -200px;
-  width: 700px; height: 700px;
+  position: absolute; top: -200px; left: -200px;
+  width: 600px; height: 600px;
   background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero-glow-right {
-  position: absolute; bottom: -100px; right: -200px;
+  position: absolute; bottom: -200px; right: -200px;
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(79,135,192,0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(79,135,192,0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero-grid {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(200,169,110,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,169,110,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(34,38,48,0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,38,48,0.3) 1px, transparent 1px);
   background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 20%, transparent 80%);
   pointer-events: none;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%);
 }
 .hero-label {
   display: inline-flex; align-items: center; gap: 8px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 18px 6px 14px;
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-size: 11px;
   color: var(--gold);
-  border: 1px solid rgba(200,169,110,0.25);
-  background: rgba(200,169,110,0.06);
-  padding: 6px 14px;
-  border-radius: 20px;
+  letter-spacing: 0.5px;
   margin-bottom: 32px;
   animation: fadeUp .8s ease both;
 }
 .hero-label-pip {
   width: 6px; height: 6px;
+  background: var(--ok);
   border-radius: 50%;
-  background: var(--gold);
-  animation: pip 2s ease-in-out infinite;
+  animation: pip 2s ease infinite;
 }
 @keyframes pip { 0%,100%{opacity:1} 50%{opacity:.2} }
 .hero-h1 {
@@ -238,7 +225,7 @@ nav {
   transition: all .15s;
   display: flex; align-items: center; gap: 8px;
 }
-.hero-btn-primary:hover { background: var(--gold2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,169,110,.2); }
+.hero-btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
 .hero-btn-secondary {
   padding: 14px 28px;
   background: transparent;
@@ -250,36 +237,33 @@ nav {
   font-weight: 500;
   cursor: pointer;
   transition: all .15s;
+  display: flex; align-items: center; gap: 8px;
 }
 .hero-btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
 
 /* Dashboard preview */
 .hero-preview {
-  position: relative;
-  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(200,169,110,.05);
+  position: relative;
   animation: fadeUp .8s .4s ease both;
 }
 .hero-preview-glow {
-  position: absolute;
-  top: -40px; left: 50%; transform: translateX(-50%);
-  width: 600px; height: 100px;
-  background: radial-gradient(ellipse, rgba(200,169,110,0.12) 0%, transparent 70%);
+  position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
+  width: 120%; height: 200%;
+  background: radial-gradient(ellipse 40% 30% at 50% 0%, rgba(200,169,110,0.06) 0%, transparent 100%);
   pointer-events: none;
 }
-.dashboard-mock {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(200,169,110,0.08);
-}
+
+/* Mock browser chrome */
 .mock-topbar {
-  background: var(--bg2);
+  background: var(--bg3);
   border-bottom: 1px solid var(--border);
-  padding: 0 20px;
-  height: 44px;
+  padding: 10px 16px;
   display: flex; align-items: center; justify-content: space-between;
 }
 .mock-dots { display: flex; gap: 6px; }
@@ -288,23 +272,26 @@ nav {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--muted);
-  background: var(--bg3);
-  padding: 4px 14px;
+  background: var(--bg2);
+  padding: 4px 16px;
   border-radius: 4px;
   border: 1px solid var(--border);
+  letter-spacing: 0.3px;
 }
 .mock-body { display: flex; height: 380px; }
 .mock-sidebar {
-  width: 160px;
+  width: 180px;
   background: var(--bg2);
   border-right: 1px solid var(--border);
-  padding: 16px 0;
+  padding: 16px 12px;
+  display: flex; flex-direction: column; gap: 2px;
   flex-shrink: 0;
 }
 .mock-logo-area {
-  padding: 0 14px 14px;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 6px 16px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .mock-logo-name {
   font-family: var(--serif);
@@ -314,62 +301,436 @@ nav {
 .mock-logo-name span { color: var(--gold); }
 .mock-nav-item {
   display: flex; align-items: center; gap: 8px;
-  padding: 6px 14px;
+  padding: 7px 10px;
+  border-radius: 4px;
   font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 2px;
+  color: var(--text2);
+  cursor: default;
+  transition: background .15s;
 }
 .mock-nav-item.active {
+  background: var(--gold-d);
   color: var(--gold);
-  background: rgba(200,169,110,0.06);
-  border-left: 2px solid var(--gold);
+  border: 1px solid rgba(200,169,110,0.1);
 }
 .mock-nav-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 .mock-main { flex: 1; padding: 16px; overflow: hidden; }
 .mock-stats {
-  display: grid; grid-template-columns: repeat(4,1fr); gap: 8px;
-  margin-bottom: 8px;
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
+  margin-bottom: 14px;
 }
 .mock-stat {
-  background: var(--bg3);
+  background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 10px 12px;
+  padding: 12px;
   position: relative;
   overflow: hidden;
 }
 .mock-stat-accent { position: absolute; top: 0; left: 0; right: 0; height: 1.5px; }
 .mock-stat-val { font-family: var(--serif); font-size: 22px; font-weight: 500; }
-.mock-stat-lbl { font-family: var(--mono); font-size: 8px; color: var(--muted); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
-.mock-grid { display: grid; grid-template-columns: 1fr 200px; gap: 10px; }
+.mock-stat-lbl { font-family: var(--mono); font-size: 8px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.mock-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .mock-card {
-  background: var(--bg3);
+  background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 10px 12px;
+  padding: 12px;
 }
-.mock-card-title { font-family: var(--mono); font-size: 8px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.mock-card-title { font-family: var(--mono); font-size: 8px; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
 .mock-pipeline-row {
   display: flex; align-items: center; gap: 8px;
   padding: 5px 0;
-  border-bottom: 1px solid rgba(34,38,48,.5);
   font-size: 10px;
+  color: var(--text2);
+  border-bottom: 1px solid var(--border);
 }
 .mock-pipeline-row:last-child { border-bottom: none; }
 .mock-pip { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .mock-bar-wrap { flex: 1; height: 3px; background: var(--bg2); border-radius: 2px; }
 .mock-bar { height: 100%; border-radius: 2px; }
 .mock-count { font-family: var(--mono); font-size: 9px; color: var(--gold); }
-.mock-task { display: flex; align-items: flex-start; gap: 6px; padding: 5px 0; font-size: 10px; color: var(--text2); border-bottom: 1px solid rgba(34,38,48,.5); }
+.mock-task { display: flex; align-items: flex-start; gap: 6px; padding: 5px 0; font-size: 10px; color: var(--text2); border-bottom: 1px solid var(--border); }
 .mock-task:last-child { border-bottom: none; }
 .mock-checkbox { width: 11px; height: 11px; border-radius: 2px; border: 1px solid var(--border2); flex-shrink: 0; margin-top: 1px; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Stats strip ───────────────────────────────────────────────── */
+/* ── Walkthrough sections ─────────────────────────────────────── */
+.walkthrough {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+}
+.walkthrough:nth-child(even) {
+  background: var(--bg2);
+}
+.walk-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.walk-inner.reverse {
+  direction: rtl;
+}
+.walk-inner.reverse > * {
+  direction: ltr;
+}
+.walk-text { display: flex; flex-direction: column; gap: 16px; }
+.walk-label {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+.walk-label-dot {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.walk-h2 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--text);
+}
+.walk-h2 em { color: var(--gold); font-style: italic; }
+.walk-p {
+  font-size: 15px;
+  color: var(--text2);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 440px;
+}
+.walk-bullets {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 4px;
+}
+.walk-bullet {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.walk-bullet-icon {
+  width: 18px; height: 18px;
+  border-radius: 4px;
+  background: var(--gold-d);
+  border: 1px solid rgba(200,169,110,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.walk-bullet-icon svg { width: 10px; height: 10px; stroke: var(--gold); }
+.walk-visual {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+
+/* ── Client detail mock ───────────────────────────────────────── */
+.client-mock {
+  background: var(--bg);
+  padding: 20px;
+}
+.cm-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.cm-company {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+}
+.cm-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+.cm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.cm-field {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+.cm-field-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.cm-field-value {
+  font-size: 13px;
+  color: var(--text);
+}
+.cm-ch {
+  grid-column: 1 / -1;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 4px;
+}
+.cm-ch-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--gold);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.cm-ch-row {
+  display: flex; justify-content: space-between;
+  font-size: 11px;
+  color: var(--text2);
+  padding: 3px 0;
+}
+
+/* ── Pipeline mock ────────────────────────────────────────────── */
+.pipeline-mock {
+  background: var(--bg);
+  padding: 20px;
+}
+.pm-header {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.pm-cols {
+  display: flex; gap: 8px;
+}
+.pm-col {
+  flex: 1;
+  min-width: 0;
+}
+.pm-col-head {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 8px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 6px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pm-col-count {
+  font-size: 9px;
+  color: var(--gold);
+}
+.pm-card-item {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+.pm-card-name {
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.pm-card-amount {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--gold);
+}
+.pm-card-type {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ── Follow-ups mock ──────────────────────────────────────────── */
+.followup-mock {
+  background: var(--bg);
+  padding: 20px;
+}
+.fu-header {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.fu-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.fu-item:last-child { border-bottom: none; }
+.fu-check {
+  width: 14px; height: 14px;
+  border-radius: 3px;
+  border: 1.5px solid var(--border2);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.fu-check.done {
+  background: var(--gold);
+  border-color: var(--gold);
+  position: relative;
+}
+.fu-check.done::after {
+  content: '';
+  position: absolute; top: 2px; left: 4px;
+  width: 4px; height: 7px;
+  border: solid var(--bg); border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+.fu-content { flex: 1; }
+.fu-title {
+  font-size: 12px;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.fu-title.done-text { text-decoration: line-through; color: var(--muted); }
+.fu-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+}
+.fu-due {
+  font-family: var(--mono);
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.fu-due.overdue { background: rgba(196,92,92,0.1); color: var(--err); }
+.fu-due.today { background: rgba(200,169,110,0.1); color: var(--gold); }
+.fu-due.upcoming { background: rgba(82,163,122,0.1); color: var(--ok); }
+
+/* ── Theme showcase ───────────────────────────────────────────── */
+.theme-section {
+  padding: 100px 0;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+  overflow: hidden;
+}
+.theme-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 48px;
+  text-align: center;
+}
+.theme-h2 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.theme-h2 em { color: var(--gold); font-style: italic; }
+.theme-sub {
+  font-size: 15px;
+  color: var(--text2);
+  font-weight: 300;
+  margin-bottom: 52px;
+}
+.theme-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.theme-card {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+.theme-card-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.theme-card.dark-card {
+  background: var(--bg);
+}
+.theme-card.dark-card .theme-card-label {
+  color: var(--gold);
+  background: var(--bg2);
+}
+.theme-card.light-card {
+  background: #f0efe9;
+  border-color: #d5d0c5;
+}
+.theme-card.light-card .theme-card-label {
+  color: #9e8550;
+  background: #ffffff;
+  border-color: #d5d0c5;
+}
+.theme-card-body {
+  padding: 16px;
+}
+
+/* Light theme mini mock */
+.light-mock-stat {
+  background: #ffffff;
+  border: 1px solid #d5d0c5;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.light-mock-stat .mock-stat-accent { background: linear-gradient(90deg, #9e8550, transparent); }
+.light-mock-stat .mock-stat-val { color: #1c1b18; }
+.light-mock-stat .mock-stat-lbl { color: #9a9588; }
+.light-mock-nav {
+  background: #ffffff;
+  border: 1px solid #d5d0c5;
+  border-radius: 6px;
+  padding: 8px;
+}
+.light-mock-nav-item {
+  display: flex; align-items: center; gap: 6px;
+  padding: 5px 8px;
+  font-size: 10px;
+  color: #5c5849;
+  border-radius: 3px;
+}
+.light-mock-nav-item.active {
+  background: rgba(158,133,80,0.08);
+  color: #9e8550;
+}
+
+/* ── Stats strip ──────────────────────────────────────────────── */
 .stats-strip {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -411,158 +772,23 @@ section { position: relative; }
   color: var(--gold);
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .section-h2 {
   font-family: var(--serif);
-  font-size: clamp(36px, 4vw, 54px);
+  font-size: clamp(36px, 5vw, 56px);
   font-weight: 500;
   line-height: 1.1;
   color: var(--text);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
-.section-h2 em { font-style: italic; color: var(--gold); }
+.section-h2 em { color: var(--gold); font-style: italic; }
 .section-sub {
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text2);
-  max-width: 540px;
+  max-width: 500px;
   line-height: 1.65;
   font-weight: 300;
-}
-
-/* ── Features ─────────────────────────────────────────────────── */
-.features { padding: 100px 0; }
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  margin-top: 60px;
-}
-.feature-card {
-  background: var(--bg2);
-  padding: 36px 32px;
-  position: relative;
-  transition: background .2s;
-}
-.feature-card:hover { background: var(--bg3); }
-.feature-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: var(--accent-color, transparent);
-  transition: opacity .2s;
-  opacity: 0;
-}
-.feature-card:hover::before { opacity: 1; }
-.feature-icon {
-  width: 40px; height: 40px;
-  border-radius: 8px;
-  background: var(--icon-bg, var(--gold-d));
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 18px;
-}
-.feature-icon svg { width: 18px; height: 18px; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; fill: none; }
-.feature-h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 10px;
-  letter-spacing: 0.1px;
-}
-.feature-p {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.65;
-  font-weight: 300;
-}
-
-/* ── How it works ─────────────────────────────────────────────── */
-.how { padding: 100px 0; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.how-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
-.how-header { text-align: center; margin-bottom: 70px; }
-.how-steps {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  position: relative;
-}
-.how-steps::before {
-  content: '';
-  position: absolute;
-  top: 27px;
-  left: calc(10% + 28px);
-  right: calc(10% + 28px);
-  height: 1px;
-  background: var(--border2);
-  pointer-events: none;
-}
-.step {
-  padding: 0 16px;
-  display: flex;
-  flex-direction: column;
-}
-.step-num {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--bg3);
-  border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--muted);
-  position: relative; z-index: 1;
-  margin-bottom: 20px;
-  flex-shrink: 0;
-  transition: all .2s;
-}
-.step:hover .step-num {
-  background: rgba(200,169,110,0.1);
-  border-color: var(--gold);
-  color: var(--gold);
-  box-shadow: 0 0 20px rgba(200,169,110,0.15);
-}
-.step-title {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 8px;
-  line-height: 1.3;
-  min-height: 34px;
-}
-.step-body {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
-  font-weight: 300;
-}
-.how-callout {
-  margin-top: 56px;
-  text-align: center;
-  padding: 22px 32px;
-  background: rgba(200,169,110,0.05);
-  border: 1px solid rgba(200,169,110,0.2);
-  border-radius: 6px;
-  font-family: var(--serif);
-  font-size: 18px;
-  font-style: italic;
-  color: var(--gold);
-  letter-spacing: 0.2px;
-}
-.how-callout {
-  margin-top: 56px;
-  text-align: center;
-  padding: 22px 32px;
-  background: rgba(200,169,110,0.05);
-  border: 1px solid rgba(200,169,110,0.2);
-  border-radius: 6px;
-  font-family: var(--serif);
-  font-size: 18px;
-  font-style: italic;
-  color: var(--gold);
-  letter-spacing: 0.2px;
 }
 
 /* ── Pricing ──────────────────────────────────────────────────── */
@@ -613,156 +839,79 @@ section { position: relative; }
   margin-bottom: 16px;
 }
 .plan-price {
-  display: flex; align-items: baseline; gap: 4px;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-bottom: 16px;
 }
 .plan-amount {
   font-family: var(--serif);
-  font-size: 52px;
+  font-size: 48px;
   font-weight: 500;
   color: var(--text);
   line-height: 1;
 }
 .plan-period {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
-}
-.plan-poa {
-  font-family: var(--serif);
-  font-size: 36px;
-  font-weight: 500;
-  color: var(--lav);
-  line-height: 1;
-  margin-bottom: 8px;
 }
 .plan-desc {
   font-size: 13px;
   color: var(--text2);
-  margin-bottom: 28px;
   line-height: 1.6;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
   font-weight: 300;
+  flex: 1;
 }
-.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px;   flex-grow: 1;
+.plan-features {
+  list-style: none;
+  margin-bottom: 28px;
+  display: flex; flex-direction: column; gap: 10px;
 }
-.plan-feature {
-  display: flex; align-items: center; gap: 10px;
+.plan-features li {
   font-size: 13px;
   color: var(--text2);
+  display: flex; align-items: center; gap: 10px;
 }
-.plan-feature-tick {
-  width: 16px; height: 16px;
+.plan-features li::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--gold);
   border-radius: 50%;
-  background: rgba(82,163,122,0.1);
-  border: 1px solid rgba(82,163,122,0.3);
-  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.plan-feature-tick svg { width: 9px; height: 9px; stroke: var(--ok); stroke-width: 2.5; fill: none; }
 .plan-btn {
-  width: 100%;
-  padding: 13px;
+  display: block;
+  text-align: center;
+  padding: 12px;
   border-radius: 4px;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all .15s;
-  text-align: center;
-  display: block;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  background: transparent;
   margin-top: auto;
 }
-.plan-btn-gold { background: var(--gold); color: var(--bg); border: none; }
-.plan-btn-gold:hover { background: var(--gold2); }
-.plan-btn-outline { background: transparent; color: var(--text2); border: 1px solid var(--border2); }
-.plan-btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.plan-btn:hover { border-color: var(--gold); color: var(--gold); }
+.pricing-card.featured .plan-btn {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+.pricing-card.featured .plan-btn:hover { background: var(--gold2); }
 .pricing-note {
   text-align: center;
   margin-top: 32px;
   font-family: var(--mono);
   font-size: 11px;
   color: var(--muted);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 .pricing-note span { color: var(--gold); }
-
-/* ── Why section ──────────────────────────────────────────────── */
-.why { padding: 100px 0; background: var(--bg2); border-top: 1px solid var(--border); }
-.why-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.why-points { display: flex; flex-direction: column; gap: 0; }
-.why-point {
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  transition: all .2s;
-}
-.why-point:first-child { border-top: 1px solid var(--border); }
-.why-point:hover .why-point-head { color: var(--gold); }
-.why-point-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--muted);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.why-point-head {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 8px;
-  transition: color .2s;
-}
-.why-point-body {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.65;
-  font-weight: 300;
-}
-.why-visual {
-  position: sticky; top: 100px;
-}
-.why-card {
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 32px;
-  box-shadow: 0 24px 48px rgba(0,0,0,.4);
-}
-.why-card-head {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--gold);
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.why-timeline { display: flex; flex-direction: column; gap: 0; }
-.wt-item {
-  display: flex; gap: 14px;
-  padding: 14px 0;
-  position: relative;
-}
-.wt-item:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  left: 11px; top: 38px; bottom: -4px;
-  width: 1px; background: var(--border);
-}
-.wt-dot {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; z-index: 1;
-}
-.wt-dot svg { width: 10px; height: 10px; stroke-width: 2; fill: none; }
-.wt-text { font-size: 12px; color: var(--text2); line-height: 1.5; padding-top: 2px; }
-.wt-text strong { color: var(--text); font-weight: 600; }
-.wt-time { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
 
 /* ── CTA ──────────────────────────────────────────────────────── */
 .cta-section {
@@ -825,11 +974,8 @@ footer {
 }
 .reveal.visible {
   opacity: 1;
-  transform: none;
+  transform: translateY(0);
 }
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .3s; }
 
 /* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -838,16 +984,16 @@ footer {
   .hero { padding: 100px 24px 60px; }
   .stats-strip { grid-template-columns: repeat(2,1fr); padding: 32px 24px; }
   .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
-  .features-grid { grid-template-columns: 1fr; }
-  .how-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .how-steps::before { display: none; }
+  .walk-inner { grid-template-columns: 1fr; gap: 40px; }
+  .walk-inner.reverse { direction: ltr; }
+  .theme-split { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
-  .why-inner { grid-template-columns: 1fr; }
-  .why-visual { position: static; }
   .section-inner { padding: 0 24px; }
-  .how-inner { padding: 0 24px; }
   .cta-section { padding: 80px 24px; }
   footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; }
+  .mock-sidebar { display: none; }
+  .mock-body { height: 300px; }
+  .pm-cols { overflow-x: auto; }
 }
 </style>
 </head>
@@ -862,10 +1008,9 @@ footer {
     </div>
   </div>
   <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#how">How it works</a>
+    <a href="#walkthrough">Product</a>
     <a href="#pricing">Pricing</a>
-    <a href="#why">Why Nexus</a>
+    <a href="#themes">Themes</a>
   </div>
   <div class="nav-cta">
     <a href="https://portal.nexus-crm.co.uk" class="btn-ghost">Sign in</a>
@@ -891,7 +1036,7 @@ footer {
   </h1>
 
   <p class="hero-sub">
-    Automated client intake, instant Company data enrichment, a pipeline built for bridging and development finance — and everything on your phone the moment it happens.
+    Automated client intake, instant company data enrichment, a pipeline built for bridging and development finance — and everything on your phone the moment it happens.
   </p>
 
   <div class="hero-actions">
@@ -899,10 +1044,14 @@ footer {
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
       Access the portal
     </a>
-    <a href="#how" class="hero-btn-secondary">See how it works</a>
+    <a href="#walkthrough" class="hero-btn-secondary">
+      See how it works
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
   </div>
 
-  <div class="hero-preview">
+  <!-- Dashboard mock -->
+  <div class="hero-preview reveal">
     <div class="hero-preview-glow"></div>
     <div class="dashboard-mock">
       <div class="mock-topbar">
@@ -917,83 +1066,52 @@ footer {
       <div class="mock-body">
         <div class="mock-sidebar">
           <div class="mock-logo-area">
+            <div class="nav-diamond" style="width:16px;height:16px;"><div class="nav-diamond-inner" style="width:6px;height:6px;"></div></div>
             <div class="mock-logo-name"><span>Nexus</span> CRM</div>
-            <div style="font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1px;margin-top:2px">COMMERCIAL PLATFORM</div>
           </div>
-          <div class="mock-nav">
-            <div class="mock-nav-lbl">MENU</div>
-            <div class="mock-nav-item active"><div class="mock-nav-dot" style="background:var(--gold)"></div>Dashboard</div>
-            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Clients</div>
-            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Pipeline</div>
-            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Tasks</div>
-            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Follow-ups</div>
-            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Activity</div>
-            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Nexus Hub</div>
-            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Twenty7Tec</div>
-            <div class="mock-nav-lbl" style="margin-top:10px">MANAGEMENT</div>
-            <div class="mock-nav-item"><div class="mock-nav-dot"></div>Team Overview</div>
-          </div>
+          <div class="mock-nav-item active"><div class="mock-nav-dot"></div> Dashboard</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div> Clients</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div> Pipeline</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div> Tasks</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div> Follow-ups</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div> Activity</div>
+          <div style="flex:1"></div>
+          <div style="font-family:var(--mono);font-size:8px;color:var(--muted);letter-spacing:1px;padding:8px 10px;border-top:1px solid var(--border);text-transform:uppercase;">Management</div>
+          <div class="mock-nav-item"><div class="mock-nav-dot"></div> Team Overview</div>
         </div>
         <div class="mock-main">
           <div class="mock-stats">
             <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:var(--gold)"></div>
+              <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--gold),transparent)"></div>
               <div class="mock-stat-val" style="color:var(--gold)">£142K</div>
               <div class="mock-stat-lbl">MTD Lending</div>
             </div>
             <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:var(--gold)"></div>
-              <div class="mock-stat-val" style="color:var(--gold)">£4.2K</div>
+              <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--ok),transparent)"></div>
+              <div class="mock-stat-val" style="color:var(--ok)">£4.2K</div>
               <div class="mock-stat-lbl">MTD Commission</div>
             </div>
             <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:#2c80bf"></div>
-              <div class="mock-stat-val">£1.8M</div>
-              <div class="mock-stat-lbl">Q2 Lending</div>
-            </div>
-            <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:#2c80bf"></div>
-              <div class="mock-stat-val">£28K</div>
-              <div class="mock-stat-lbl">Q2 Commission</div>
-            </div>
-          </div>
-          <div class="mock-stats">
-            <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:#27ae60"></div>
-              <div class="mock-stat-val">£6.8M</div>
-              <div class="mock-stat-lbl">Pipeline Commission</div>
-            </div>
-            <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:#27ae60"></div>
-              <div class="mock-stat-val">47</div>
+              <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--info),transparent)"></div>
+              <div class="mock-stat-val" style="color:var(--info)">47</div>
               <div class="mock-stat-lbl">Total Clients</div>
             </div>
-            <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:#2c80bf"></div>
-              <div class="mock-stat-val">5</div>
-              <div class="mock-stat-lbl">MTD Deals</div>
-            </div>
-            <div class="mock-stat">
-              <div class="mock-stat-accent" style="background:#e67e22"></div>
-              <div class="mock-stat-val">8</div>
-              <div class="mock-stat-lbl">Follow Ups Due</div>
-            </div>
           </div>
-          <div class="mock-grid">
+          <div class="mock-cards">
             <div class="mock-card">
               <div class="mock-card-title">Pipeline Summary</div>
-              <div class="mock-pipeline-row"><div class="mock-pip" style="background:#525666"></div><span style="font-size:10px;color:var(--text2);flex:1">Enquiry</span><div class="mock-bar-wrap"><div class="mock-bar" style="width:30%;background:#525666;opacity:.5"></div></div><span class="mock-count">2</span></div>
-              <div class="mock-pipeline-row"><div class="mock-pip" style="background:var(--info)"></div><span style="font-size:10px;color:var(--text2);flex:1">DIP</span><div class="mock-bar-wrap"><div class="mock-bar" style="width:50%;background:var(--info);opacity:.5"></div></div><span class="mock-count">1</span></div>
-              <div class="mock-pipeline-row"><div class="mock-pip" style="background:var(--gold)"></div><span style="font-size:10px;color:var(--text2);flex:1">Packaged</span><div class="mock-bar-wrap"><div class="mock-bar" style="width:65%;background:var(--gold);opacity:.5"></div></div><span class="mock-count">2</span></div>
-              <div class="mock-pipeline-row"><div class="mock-pip" style="background:var(--lav)"></div><span style="font-size:10px;color:var(--text2);flex:1">Submitted</span><div class="mock-bar-wrap"><div class="mock-bar" style="width:80%;background:var(--lav);opacity:.5"></div></div><span class="mock-count">1</span></div>
-              <div class="mock-pipeline-row"><div class="mock-pip" style="background:var(--ok)"></div><span style="font-size:10px;color:var(--text2);flex:1">Offered</span><div class="mock-bar-wrap"><div class="mock-bar" style="width:92%;background:var(--ok);opacity:.5"></div></div><span class="mock-count">1</span></div>
+              <div class="mock-pipeline-row"><div class="mock-pip" style="background:var(--info)"></div> Enquiry <div class="mock-bar-wrap"><div class="mock-bar" style="width:40%;background:var(--info)"></div></div> <div class="mock-count">2</div></div>
+              <div class="mock-pipeline-row"><div class="mock-pip" style="background:var(--lav)"></div> DIP <div class="mock-bar-wrap"><div class="mock-bar" style="width:20%;background:var(--lav)"></div></div> <div class="mock-count">1</div></div>
+              <div class="mock-pipeline-row"><div class="mock-pip" style="background:var(--gold)"></div> Packaged <div class="mock-bar-wrap"><div class="mock-bar" style="width:40%;background:var(--gold)"></div></div> <div class="mock-count">2</div></div>
+              <div class="mock-pipeline-row"><div class="mock-pip" style="background:var(--ok)"></div> Submitted <div class="mock-bar-wrap"><div class="mock-bar" style="width:20%;background:var(--ok)"></div></div> <div class="mock-count">1</div></div>
+              <div class="mock-pipeline-row"><div class="mock-pip" style="background:#52a37a"></div> Offered <div class="mock-bar-wrap"><div class="mock-bar" style="width:20%;background:#52a37a"></div></div> <div class="mock-count">1</div></div>
             </div>
             <div class="mock-card">
               <div class="mock-card-title">Follow Ups Due</div>
-              <div class="mock-task"><div class="mock-checkbox"></div><span>Chase Keystone DIP update</span></div>
-              <div class="mock-task"><div class="mock-checkbox"></div><span>Send terms to Raj Patel</span></div>
-              <div class="mock-task"><div class="mock-checkbox"></div><span>Book valuation — Leeds</span></div>
-              <div class="mock-task"><div class="mock-checkbox"></div><span>Update network — Webb offer</span></div>
+              <div class="mock-task"><div class="mock-checkbox"></div> Chase Keystone DIP update</div>
+              <div class="mock-task"><div class="mock-checkbox"></div> Send terms to Raj Patel</div>
+              <div class="mock-task"><div class="mock-checkbox"></div> Book valuation — Leeds</div>
+              <div class="mock-task"><div class="mock-checkbox"></div> Update network — Webb offer</div>
             </div>
           </div>
         </div>
@@ -1003,116 +1121,309 @@ footer {
 </section>
 
 <!-- ── Stats Strip ──────────────────────────────────────────────── -->
-<div class="stats-strip reveal">
-  <div class="stat-item">
+<div class="stats-strip">
+  <div class="stat-item reveal">
     <div class="stat-value">&lt;30s</div>
     <div class="stat-label">Client intake, fully automated</div>
   </div>
-  <div class="stat-item">
+  <div class="stat-item reveal">
     <div class="stat-value">8hrs</div>
     <div class="stat-label">Admin saved per broker per week</div>
   </div>
-  <div class="stat-item">
+  <div class="stat-item reveal">
     <div class="stat-value">100%</div>
     <div class="stat-label">Company data auto-enriched</div>
   </div>
-  <div class="stat-item">
+  <div class="stat-item reveal">
     <div class="stat-value">6</div>
     <div class="stat-label">Pipeline stages built for commercial finance</div>
   </div>
 </div>
-
-<!-- ── Features ─────────────────────────────────────────────────── -->
-<section class="features" id="features">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="section-label">Features</div>
-      <h2 class="section-h2">Everything a commercial broker<br><em>actually needs.</em></h2>
-      <p class="section-sub">No bloat. No generic sales CRM retrofitted for finance. Built from scratch for bridging, development and commercial mortgage brokers.</p>
+- ── Walkthrough: Client Intake ──────────────────────────────── -->
+<section class="walkthrough" id="walkthrough">
+  <div class="walk-inner">
+    <div class="walk-text reveal">
+      <div class="walk-label"><div class="walk-label-dot"></div> Step 01</div>
+      <h2 class="walk-h2">Client walks in.<br><em>Data fills itself.</em></h2>
+      <p class="walk-p">Share your intake link. The client fills in their details and Nexus automatically enriches the record with Companies House data — directors, SIC codes, incorporation date — in under 30 seconds.</p>
+      <div class="walk-bullets">
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Automated client intake form</div>
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Companies House auto-enrichment</div>
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Instant push notifications</div>
+      </div>
     </div>
-    <div class="features-grid">
-      <div class="feature-card reveal" style="--accent-color:var(--gold);--icon-bg:rgba(200,169,110,0.08)">
-        <div class="feature-icon">
-          <svg stroke="var(--gold)" viewBox="0 0 24 24"><rect x="3" y="3" width="5" height="18" rx="1"/><rect x="10" y="8" width="5" height="13" rx="1"/><rect x="17" y="5" width="5" height="16" rx="1"/></svg>
+    <div class="walk-visual reveal">
+      <div class="client-mock">
+        <div class="cm-header">
+          <div class="cm-company">Keystone Property Group</div>
+          <div class="cm-badge" style="color:var(--info);border-color:var(--info)">DIP</div>
         </div>
-        <div class="feature-h3">Commercial Finance Pipeline</div>
-        <p class="feature-p">Six stages built for how commercial finance actually works: Enquiry, DIP, Packaged, Submitted, Offered, Completed. Not adapted from sales — designed from scratch.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-1" style="--accent-color:var(--ok);--icon-bg:rgba(82,163,122,0.08)">
-        <div class="feature-icon">
-          <svg stroke="var(--ok)" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div class="cm-grid">
+          <div class="cm-field">
+            <div class="cm-field-label">Contact</div>
+            <div class="cm-field-value">James Harrington</div>
+          </div>
+          <div class="cm-field">
+            <div class="cm-field-label">Email</div>
+            <div class="cm-field-value">j.harrington@keystonepg.co.uk</div>
+          </div>
+          <div class="cm-field">
+            <div class="cm-field-label">Phone</div>
+            <div class="cm-field-value">07891 234 567</div>
+          </div>
+          <div class="cm-field">
+            <div class="cm-field-label">Finance Type</div>
+            <div class="cm-field-value">Bridging</div>
+          </div>
+          <div class="cm-ch">
+            <div class="cm-ch-label">Companies House</div>
+            <div class="cm-ch-row"><span style="color:var(--muted)">Company No.</span> <span>09284716</span></div>
+            <div class="cm-ch-row"><span style="color:var(--muted)">Incorporated</span> <span>12 Oct 2014</span></div>
+            <div class="cm-ch-row"><span style="color:var(--muted)">SIC Code</span> <span>68100 — Real estate</span></div>
+            <div class="cm-ch-row"><span style="color:var(--muted)">Directors</span> <span>J. Harrington, S. Webb</span></div>
+          </div>
         </div>
-        <div class="feature-h3">Automated Client Intake</div>
-        <p class="feature-p">Submit a client through a branded form. Company data is verified and enriched automatically. The full record appears in your CRM — without a single manual entry.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-2" style="--accent-color:var(--info);--icon-bg:rgba(79,135,192,0.08)">
-        <div class="feature-icon">
-          <svg stroke="var(--info)" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.45 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
-        <div class="feature-h3">Instant Notifications</div>
-        <p class="feature-p">The moment a client is submitted, an alert lands on your phone with their full details. No logging in. No checking email. You know instantly.</p>
-      </div>
-      <div class="feature-card reveal" style="--accent-color:var(--lav);--icon-bg:rgba(139,111,212,0.08)">
-        <div class="feature-icon">
-          <svg stroke="var(--lav)" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/><polyline points="14 2 14 8 20 8"/></svg>
-        </div>
-        <div class="feature-h3">Notes & Activity Log</div>
-        <p class="feature-p">Log calls, emails and meetings against every client record. Tagged by type, timestamped, permanent. Never lose context on a deal — even six months later.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-1" style="--accent-color:var(--err);--icon-bg:rgba(196,92,92,0.08)">
-        <div class="feature-icon">
-          <svg stroke="var(--err)" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <div class="feature-h3">Follow-up Engine</div>
-        <p class="feature-p">Set next action dates on every client. Overdue follow-ups surface on your dashboard automatically. Nothing slips. Nothing gets forgotten.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-2" style="--accent-color:#dfc28a;--icon-bg:rgba(223,194,138,0.06)">
-        <div class="feature-icon">
-          <svg stroke="#dfc28a" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="feature-h3">Team & Role Access</div>
-        <p class="feature-p">Master broker sees everything firm-wide. Advisers see only their own pipeline and clients. Role-based access that works how a brokerage actually operates.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── How it works ──────────────────────────────────────────────── -->
-<section class="how" id="how">
-  <div class="how-inner">
-    <div class="how-header reveal">
-      <div class="section-label">How it works</div>
-      <h2 class="section-h2">From first contact to active client<br><em>in under 30 seconds.</em></h2>
-    </div>
-    <div class="how-steps">
-      <div class="step reveal">
-        <div class="step-num">01</div>
-        <div class="step-title">Client submits your intake form</div>
-        <div class="step-body">A branded online form captures contact details, company name, finance type and loan requirements.</div>
-      </div>
-      <div class="step reveal reveal-delay-1">
-        <div class="step-num">02</div>
-        <div class="step-title">Data is enriched automatically</div>
-        <div class="step-body">Company information is verified and enriched in the background. No manual lookups. No copy-pasting.</div>
-      </div>
-      <div class="step reveal reveal-delay-2">
-        <div class="step-num">03</div>
-        <div class="step-title">Full record created instantly</div>
-        <div class="step-body">A complete client record is written to your CRM with all enriched data attached. Permanently stored.</div>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num">04</div>
-        <div class="step-title">You're notified immediately</div>
-        <div class="step-body">An instant alert lands on your phone with the full client summary. You know the moment it arrives.</div>
-      </div>
-      <div class="step reveal reveal-delay-3">
-        <div class="step-num">05</div>
-        <div class="step-title">Ready to work the deal</div>
-        <div class="step-body">The client is in your pipeline with all data pre-filled. Add notes, set a follow-up date, move it forward.</div>
+<!-- ── Walkthrough: Pipeline ───────────────────────────────────── -->
+<section class="walkthrough">
+  <div class="walk-inner reverse">
+    <div class="walk-text reveal">
+      <div class="walk-label"><div class="walk-label-dot"></div> Step 02</div>
+      <h2 class="walk-h2">Your pipeline,<br><em>built for commercial.</em></h2>
+      <p class="walk-p">Six stages designed for how commercial finance actually works — from Enquiry through DIP, Packaged, Submitted, Offered and Completed. Drag deals through your pipeline and see your lending figures update in real time.</p>
+      <div class="walk-bullets">
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> 6 stages: Enquiry to Completed</div>
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Real-time lending &amp; commission tracking</div>
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Bridging, development, HMO, commercial</div>
       </div>
     </div>
-    <div class="how-callout reveal">
-      From enquiry to active CRM record — enriched, notified and ready to progress — in under 30 seconds. No manual entry required.
+    <div class="walk-visual reveal">
+      <div class="pipeline-mock">
+        <div class="pm-header">Pipeline Board</div>
+        <div class="pm-cols">
+          <div class="pm-col">
+            <div class="pm-col-head">Enquiry <span class="pm-col-count">2</span></div>
+            <div class="pm-card-item">
+              <div class="pm-card-name">Webb Developments</div>
+              <div class="pm-card-amount">£1.2M</div>
+              <div class="pm-card-type">Development</div>
+            </div>
+            <div class="pm-card-item">
+              <div class="pm-card-name">Apex Holdings</div>
+              <div class="pm-card-amount">£480K</div>
+              <div class="pm-card-type">Bridging</div>
+            </div>
+          </div>
+          <div class="pm-col">
+            <div class="pm-col-head">DIP <span class="pm-col-count">1</span></div>
+            <div class="pm-card-item">
+              <div class="pm-card-name">Keystone Property</div>
+              <div class="pm-card-amount">£750K</div>
+              <div class="pm-card-type">Bridging</div>
+            </div>
+          </div>
+          <div class="pm-col">
+            <div class="pm-col-head">Packaged <span class="pm-col-count">2</span></div>
+            <div class="pm-card-item">
+              <div class="pm-card-name">Northern Estates</div>
+              <div class="pm-card-amount">£2.1M</div>
+              <div class="pm-card-type">Development</div>
+            </div>
+            <div class="pm-card-item">
+              <div class="pm-card-name">Raj Patel Ltd</div>
+              <div class="pm-card-amount">£340K</div>
+              <div class="pm-card-type">HMO</div>
+            </div>
+          </div>
+          <div class="pm-col">
+            <div class="pm-col-head">Offered <span class="pm-col-count">1</span></div>
+            <div class="pm-card-item">
+              <div class="pm-card-name">Summit Capital</div>
+              <div class="pm-card-amount">£890K</div>
+              <div class="pm-card-type">Commercial</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Walkthrough: Follow-ups ─────────────────────────────────── -->
+<section class="walkthrough">
+  <div class="walk-inner">
+    <div class="walk-text reveal">
+      <div class="walk-label"><div class="walk-label-dot"></div> Step 03</div>
+      <h2 class="walk-h2">Nothing falls<br><em>through the cracks.</em></h2>
+      <p class="walk-p">Every deal generates follow-ups. Chase a DIP, send terms, book a valuation — Nexus tracks what’s due, what’s overdue and what’s done. Notifications hit your phone in real time so you’re always on top of your book.</p>
+      <div class="walk-bullets">
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Follow-up engine with due dates</div>
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Notes &amp; compliance trail</div>
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Real-time push notifications</div>
+      </div>
+    </div>
+    <div class="walk-visual reveal">
+      <div class="followup-mock">
+        <div class="fu-header">Tasks &amp; Follow-ups</div>
+        <div class="fu-item">
+          <div class="fu-check"></div>
+          <div class="fu-content">
+            <div class="fu-title">Chase Keystone DIP update</div>
+            <div class="fu-meta">Keystone Property Group &middot; Bridging £750K</div>
+          </div>
+          <div class="fu-due overdue">Overdue</div>
+        </div>
+        <div class="fu-item">
+          <div class="fu-check"></div>
+          <div class="fu-content">
+            <div class="fu-title">Send terms to Raj Patel</div>
+            <div class="fu-meta">Raj Patel Ltd &middot; HMO £340K</div>
+          </div>
+          <div class="fu-due today">Today</div>
+        </div>
+        <div class="fu-item">
+          <div class="fu-check"></div>
+          <div class="fu-content">
+            <div class="fu-title">Book valuation — Leeds</div>
+            <div class="fu-meta">Northern Estates &middot; Development £2.1M</div>
+          </div>
+          <div class="fu-due upcoming">Tomorrow</div>
+        </div>
+        <div class="fu-item">
+          <div class="fu-check done"></div>
+          <div class="fu-content">
+            <div class="fu-title done-text">Update network — Webb offer received</div>
+            <div class="fu-meta">Webb Developments &middot; Development £1.2M</div>
+          </div>
+          <div class="fu-due upcoming">Done</div>
+        </div>
+        <div class="fu-item">
+          <div class="fu-check"></div>
+          <div class="fu-content">
+            <div class="fu-title">Request Summit valuation report</div>
+            <div class="fu-meta">Summit Capital &middot; Commercial £890K</div>
+          </div>
+          <div class="fu-due upcoming">Fri</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Walkthrough: Team ───────────────────────────────────────── -->
+<section class="walkthrough">
+  <div class="walk-inner reverse">
+    <div class="walk-text reveal">
+      <div class="walk-label"><div class="walk-label-dot"></div> Step 04</div>
+      <h2 class="walk-h2">Scale up.<br><em>Stay in control.</em></h2>
+      <p class="walk-p">Add advisers and they see their own pipeline. As master broker, you see everything — lending figures, commission, activity across the whole team. Role-based access means everyone sees exactly what they need.</p>
+      <div class="walk-bullets">
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Master broker oversight</div>
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Role-based access control</div>
+        <div class="walk-bullet"><div class="walk-bullet-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div> Team overview dashboard</div>
+      </div>
+    </div>
+    <div class="walk-visual reveal">
+      <div class="dashboard-mock">
+        <div class="mock-topbar">
+          <div class="mock-dots">
+            <div class="mock-dot" style="background:#c45c5c"></div>
+            <div class="mock-dot" style="background:#c8a96e"></div>
+            <div class="mock-dot" style="background:#52a37a"></div>
+          </div>
+          <div class="mock-url">portal.nexus-crm.co.uk</div>
+          <div style="width:60px"></div>
+        </div>
+        <div class="mock-body" style="height:260px;">
+          <div class="mock-main" style="padding:14px;">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Team Overview</div>
+            <div class="mock-stats" style="grid-template-columns:repeat(4,1fr);margin-bottom:12px;">
+              <div class="mock-stat" style="padding:10px;">
+                <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--gold),transparent)"></div>
+                <div class="mock-stat-val" style="color:var(--gold);font-size:18px;">£6.8M</div>
+                <div class="mock-stat-lbl">Pipeline</div>
+              </div>
+              <div class="mock-stat" style="padding:10px;">
+                <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--ok),transparent)"></div>
+                <div class="mock-stat-val" style="color:var(--ok);font-size:18px;">£28K</div>
+                <div class="mock-stat-lbl">Q2 Commission</div>
+              </div>
+              <div class="mock-stat" style="padding:10px;">
+                <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--info),transparent)"></div>
+                <div class="mock-stat-val" style="color:var(--info);font-size:18px;">5</div>
+                <div class="mock-stat-lbl">MTD Deals</div>
+              </div>
+              <div class="mock-stat" style="padding:10px;">
+                <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--lav),transparent)"></div>
+                <div class="mock-stat-val" style="color:var(--lav);font-size:18px;">3</div>
+                <div class="mock-stat-lbl">Advisers</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="mock-card" style="padding:10px;">
+                <div class="mock-card-title">By Adviser</div>
+                <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:10px;color:var(--text2);border-bottom:1px solid var(--border);">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);"></div> P. Gray <div style="flex:1"></div> <span style="font-family:var(--mono);font-size:9px;color:var(--gold)">£3.2M</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:10px;color:var(--text2);border-bottom:1px solid var(--border);">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--info);"></div> S. Mitchell <div style="flex:1"></div> <span style="font-family:var(--mono);font-size:9px;color:var(--info)">£2.4M</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:10px;color:var(--text2);">
+                  <div style="width:6px;height:6px;border-radius:50%;background:var(--lav);"></div> R. Khan <div style="flex:1"></div> <span style="font-family:var(--mono);font-size:9px;color:var(--lav)">£1.2M</span>
+                </div>
+              </div>
+              <div class="mock-card" style="padding:10px;">
+                <div class="mock-card-title">Recent Activity</div>
+                <div style="padding:3px 0;font-size:9px;color:var(--text2);border-bottom:1px solid var(--border);"><span style="color:var(--ok)">Completed</span> Summit Capital — S.M.</div>
+                <div style="padding:3px 0;font-size:9px;color:var(--text2);border-bottom:1px solid var(--border);"><span style="color:var(--info)">DIP</span> Keystone Property — P.G.</div>
+                <div style="padding:3px 0;font-size:9px;color:var(--text2);"><span style="color:var(--gold)">New</span> Webb Developments — R.K.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <div class="theme-inner">
+    <div class="section-label reveal">Your Workspace</div>
+    <h2 class="theme-h2 reveal">Your workspace, <em>your way.</em></h2>
+    <p class="theme-sub reveal">Dark mode for late-night deal flow. Light mode for bright offices. Switch between them any time — your preference is saved.</p>
+    <div class="theme-split reveal">
+      <div class="theme-card dark-card">
+        <div class="theme-card-label">Dark Mode</div>
+        <div class="theme-card-body">
+          <div class="mock-stat" style="margin-bottom:8px;">
+            <div class="mock-stat-accent" style="background:linear-gradient(90deg,var(--gold),transparent)"></div>
+            <div class="mock-stat-val" style="color:var(--gold)">£142K</div>
+            <div class="mock-stat-lbl">MTD Lending</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:8px;">
+            <div style="display:flex;align-items:center;gap:6px;padding:5px 8px;font-size:10px;color:var(--gold);background:var(--gold-d);border-radius:3px;margin-bottom:3px;"><div style="width:5px;height:5px;border-radius:50%;background:var(--gold);"></div> Dashboard</div>
+            <div style="display:flex;align-items:center;gap:6px;padding:5px 8px;font-size:10px;color:var(--text2);"><div style="width:5px;height:5px;border-radius:50%;background:var(--text2);"></div> Clients</div>
+            <div style="display:flex;align-items:center;gap:6px;padding:5px 8px;font-size:10px;color:var(--text2);"><div style="width:5px;height:5px;border-radius:50%;background:var(--text2);"></div> Pipeline</div>
+          </div>
+        </div>
+      </div>
+      <div class="theme-card light-card">
+        <div class="theme-card-label">Light Mode</div>
+        <div class="theme-card-body">
+          <div class="light-mock-stat">
+            <div class="mock-stat-accent" style="background:linear-gradient(90deg,#9e8550,transparent)"></div>
+            <div class="mock-stat-val" style="color:#1c1b18">£142K</div>
+            <div class="mock-stat-lbl" style="color:#9a9588">MTD Lending</div>
+          </div>
+          <div class="light-mock-nav">
+            <div class="light-mock-nav-item active"><div style="width:5px;height:5px;border-radius:50%;background:#9e8550;"></div> Dashboard</div>
+            <div class="light-mock-nav-item"><div style="width:5px;height:5px;border-radius:50%;background:#5c5849;"></div> Clients</div>
+            <div class="light-mock-nav-item"><div style="width:5px;height:5px;border-radius:50%;background:#5c5849;"></div> Pipeline</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1133,180 +1444,91 @@ footer {
           <div class="plan-amount">£79</div>
           <div class="plan-period">/mo</div>
         </div>
-        <p class="plan-desc">For the individual commercial finance broker. Full CRM, pipeline, notes, follow-ups and automated intake.</p>
+        <div class="plan-desc">For the individual commercial finance broker. Full CRM, pipeline, notes, follow-ups and automated intake.</div>
         <ul class="plan-features">
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Unlimited clients</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Full pipeline board</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Automated client intake</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Instant notifications</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Notes & follow-up engine</li>
+          <li>Unlimited clients</li>
+          <li>Full pipeline board</li>
+          <li>Automated client intake</li>
+          <li>Instant notifications</li>
+          <li>Notes &amp; follow-up engine</li>
+          <li>Companies House lookup</li>
         </ul>
-        <a href="https://portal.nexus-crm.co.uk" class="plan-btn plan-btn-outline">Get started</a>
+        <a class="plan-btn" href="#cta">Start Free Trial</a>
       </div>
-      <!-- Team -->
-      <div class="pricing-card featured reveal reveal-delay-1">
-        <div class="plan-name">Team</div>
+      <!-- Growth -->
+      <div class="pricing-card featured reveal">
+        <div class="plan-name">Growth</div>
         <div class="plan-price">
-          <div class="plan-amount">£199</div>
+          <div class="plan-amount">£149</div>
           <div class="plan-period">/mo</div>
         </div>
-        <p class="plan-desc">For brokerages with 2–10 advisers. Master broker sees all data. Advisers see their own pipeline.</p>
+        <div class="plan-desc">For firms scaling up. Everything in Solo plus team management, role-based access and team analytics.</div>
         <ul class="plan-features">
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Solo</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>2–10 advisers</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Team overview dashboard</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Role-based access</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Priority support</li>
+          <li>Everything in Solo</li>
+          <li>Up to 5 advisers</li>
+          <li>Master broker dashboard</li>
+          <li>Role-based access</li>
+          <li>Team-wide analytics</li>
+          <li>Priority support</li>
         </ul>
-        <a href="https://portal.nexus-crm.co.uk" class="plan-btn plan-btn-gold">Get started</a>
-      </div>
-      <!-- Enterprise -->
-      <div class="pricing-card reveal reveal-delay-2">
+        <a class="plan-btn featured-btn" href="#cta">Start Free Trial</a>
+      </div>l">
         <div class="plan-name">Enterprise</div>
-        <div class="plan-poa">Price on<br>Application</div>
-        <p class="plan-desc">For larger networks and organisations. Tailored to your scale, structure and requirements.</p>
+        <div class="plan-price">
+          <div class="plan-amount" style="font-size:32px;">Price on</div>
+          <div class="plan-period" style="font-size:32px;font-family:var(--serif);color:var(--text);">Application</div>
+        </div>
+        <div class="plan-desc">For larger networks and organisations. Tailored to your scale, structure and requirements.</div>
         <ul class="plan-features">
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Team</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Unlimited advisers</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>White-label branding</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Network-wide reporting</li>
-          <li class="plan-feature"><span class="plan-feature-tick"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Dedicated onboarding</li>
+          <li>Everything in Team</li>
+          <li>Unlimited advisers</li>
+          <li>White-label branding</li>
+          <li>Network-wide reporting</li>
+          <li>Dedicated onboarding</li>
         </ul>
-        <a href="mailto:paul.gray@synergy.finance" class="plan-btn plan-btn-outline">Talk to us</a>
+        <a href="mailto:paul.gray@synergy.finance" class="plan-btn">Talk to us</a>
       </div>
     </div>
-    <p class="pricing-note reveal">All plans include a guided setup session. <span>No setup fees. No contracts.</span> Cancel anytime.</p>
+    <p class="pricing-note reveal"><span>&#9672;</span> All plans include a guided setup session. No setup fees. No long-term contracts.</p>
   </div>
 </section>
 
-<!-- ── Why Nexus ─────────────────────────────────────────────────── -->
-<section class="why" id="why">
-  <div class="why-inner">
-    <div class="reveal">
-      <div class="section-label">Why Nexus CRM</div>
-      <h2 class="section-h2">Built by someone<br>who does <em>what you do.</em></h2>
-      <p class="section-sub" style="margin-bottom:40px">Not adapted from a generic sales CRM. Built from scratch by an active commercial finance broker.</p>
-
-      <div class="why-points">
-        <div class="why-point">
-          <div class="why-point-label">01 — Origin</div>
-          <div class="why-point-head">Born from real frustration</div>
-          <div class="why-point-body">Every feature in Nexus CRM came from an actual daily frustration — the pipeline stages, the company data auto-fill, the instant phone notification. Not from a product team guessing what brokers need.</div>
-        </div>
-        <div class="why-point">
-          <div class="why-point-label">02 — Status</div>
-          <div class="why-point-head">Already live and working</div>
-          <div class="why-point-body">This isn't a concept or a roadmap. The system is live today at portal.nexus-crm.co.uk. The automation is running. Clients are being processed through it right now.</div>
-        </div>
-        <div class="why-point">
-          <div class="why-point-label">03 — Integrations</div>
-          <div class="why-point-head">Open to your existing tools</div>
-          <div class="why-point-body">Nexus CRM is designed to connect with the tools you already use. There are integrations already live, and the platform is built to grow with your workflow.</div>
-        </div>
-        <div class="why-point">
-          <div class="why-point-label">04 — Roadmap</div>
-          <div class="why-point-head">You shape what gets built next</div>
-          <div class="why-point-body">Nexus CRM is actively being developed. Brokers who join early have direct input into what gets built next. Your workflow becomes the product roadmap.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="why-visual reveal reveal-delay-2">
-      <div class="why-card">
-        <div class="why-card-head">Live Activity Feed</div>
-        <div class="why-timeline">
-          <div class="wt-item">
-            <div class="wt-dot"><svg stroke="var(--ok)" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-            <div>
-              <div class="wt-text"><strong>Sarah Okonkwo</strong> submitted via intake form</div>
-              <div class="wt-time">2 minutes ago · Typeform</div>
-            </div>
-          </div>
-          <div class="wt-item">
-            <div class="wt-dot"><svg stroke="var(--info)" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div>
-              <div class="wt-text">DIP Certificate generated for <strong>Marcus Webb</strong></div>
-              <div class="wt-time">18 minutes ago · Nexus Bot</div>
-            </div>
-          </div>
-          <div class="wt-item">
-            <div class="wt-dot"><svg stroke="var(--lav)" viewBox="0 0 24 24"><rect x="3" y="3" width="5" height="18" rx="1"/><rect x="10" y="8" width="5" height="13" rx="1"/><rect x="17" y="5" width="5" height="16" rx="1"/></svg></div>
-            <div>
-              <div class="wt-text">Deal <strong>SKO Burnley Dev</strong> moved to Submitted</div>
-              <div class="wt-time">1 hour ago · CRM</div>
-            </div>
-          </div>
-          <div class="wt-item">
-            <div class="wt-dot"><svg stroke="var(--gold)" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.45 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-            <div>
-              <div class="wt-text">Company data enriched for <strong>Webb Commercial Holdings</strong></div>
-              <div class="wt-time">2 hours ago · Automated</div>
-            </div>
-          </div>
-          <div class="wt-item">
-            <div class="wt-dot"><svg stroke="var(--ok)" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div>
-              <div class="wt-text">Task completed: <strong>Chase Keystone DIP — Park Lane</strong></div>
-              <div class="wt-time">3 hours ago · Jordan S.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CTA ───────────────────────────────────────────────────────── -->
+<!-- ── CTA ────────────────────────────────────────────────────── -->
 <section class="cta-section">
   <div class="cta-glow"></div>
-  <div class="reveal">
-    <h2 class="cta-h2">Ready to run your brokerage<br>the way it <em>should</em> work?</h2>
-    <p class="cta-sub">Access the portal now. We'll walk you through everything.</p>
-    <div class="cta-actions">
-      <a href="https://portal.nexus-crm.co.uk" class="hero-btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-        Access the portal
-      </a>
-      <a href="mailto:paul.gray@synergy.finance" class="hero-btn-secondary">Get in touch</a>
-    </div>
-    <p class="cta-note">paul.gray@synergy.finance &nbsp;·&nbsp; nexus-crm.co.uk</p>
+  <h2 class="cta-h2 reveal">Ready to run your brokerage<br>the way it <em>should</em> work?</h2>
+  <p class="cta-sub reveal">Access the portal now. We’ll walk you through everything.</p>
+  <div class="cta-actions reveal">
+    <a href="https://portal.nexus-crm.co.uk" class="hero-btn-primary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+      Access the portal
+    </a>
+    <a href="mailto:paul.gray@synergy.finance" class="hero-btn-secondary">Get in touch</a>
   </div>
+  <div class="cta-note reveal">paul.gray@synergy.finance &nbsp;&middot;&nbsp; nexus-crm.co.uk</div>
 </section>
 
-<!-- ── Footer ────────────────────────────────────────────────────── -->
+<!-- ── Footer ──────────────────────────────────────────────────── -->
 <footer>
   <div class="footer-left">
-    <div class="nav-diamond" style="width:18px;height:18px"><div class="nav-diamond-inner" style="width:6px;height:6px"></div></div>
-    <div>
-      <div class="nav-wordmark" style="font-size:15px"><span>Nexus</span> CRM</div>
-      <div class="footer-tagline">Built by a broker, for brokers.</div>
-    </div>
+    <div class="nav-diamond" style="width:16px;height:16px;"><div class="nav-diamond-inner" style="width:5px;height:5px;"></div></div>
+    <span class="footer-tagline">Nexus CRM — Built by a broker, for brokers.</span>
   </div>
   <div class="footer-links">
-    <a href="#features">Features</a>
-    <a href="#how">How it works</a>
+    <a href="#walkthrough">Product</a>
     <a href="#pricing">Pricing</a>
-    <a href="https://portal.nexus-crm.co.uk">Portal</a>
     <a href="mailto:paul.gray@synergy.finance">Contact</a>
   </div>
-  <div class="footer-right">© 2026 Nexus CRM</div>
+  <div class="footer-right">&copy; 2025 313 Commercial Ltd</div>
 </footer>
 
+<!-- ── Scroll Reveal ──────────────────────────────────────────── -->
 <script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Nav scroll effect
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  nav.style.borderBottomColor = window.scrollY > 40
-    ? 'rgba(34,38,48,0.95)'
-    : 'rgba(34,38,48,0.8)';
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 });
 </script>
 </body>
