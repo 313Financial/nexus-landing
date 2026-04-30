@@ -407,8 +407,8 @@
     .footer-inner { display: grid; grid-template-columns: 1.4fr auto auto auto; gap: 48px; align-items: start; }
     .footer-brand { }
     .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .footer-logo-sq { width: 28px; height: 28px; border: 1.5px solid var(--gold); border-radius: 5px; position: relative; }
-    .footer-logo-sq::after { content: ''; position: absolute; top: 6px; left: 6px; width: 14px; height: 14px; background: var(--gold); border-radius: 2px; opacity: 0.25; }
+    .footer-diamond { width: 28px; height: 28px; border: 1.5px solid var(--gold); border-radius: 5px; transform: rotate(45deg) scale(0.72); display: flex; align-items: center; justify-content: center; }
+    .footer-diamond-inner { width: 10px; height: 10px; background: var(--gold); border-radius: 2px; }
     .footer-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--text); letter-spacing: 0.3px; }
     .footer-logo-text span { color: var(--gold); }
     .footer-tagline { font-size: 13px; color: var(--text2); max-width: 260px; line-height: 1.6; }
@@ -801,7 +801,7 @@
       <div class="footer-inner">
         <div class="footer-brand">
           <div class="footer-logo">
-            <div class="footer-logo-sq" aria-hidden="true"></div>
+            <div class="footer-diamond" aria-hidden="true"><div class="footer-diamond-inner"></div></div>
             <div class="footer-logo-text"><span>Nexus</span> CRM</div>
           </div>
           <p class="footer-tagline">Built by a commercial finance broker, for commercial finance brokers.</p>
