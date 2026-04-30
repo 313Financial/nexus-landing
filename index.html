@@ -44,7 +44,7 @@
       "@type": "AggregateOffer",
       "priceCurrency": "GBP",
       "lowPrice": "49",
-      "highPrice": "399",
+      "highPrice": "149",
       "offerCount": "3"
     },
     "featureList": [
@@ -111,7 +111,7 @@
         "name": "Does Nexus CRM integrate with Twenty7Tec?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Nexus CRM integrates directly with Twenty7Tec for two-way client and case synchronisation. Push clients and deals to T7T and pull sourcing data back into your pipeline."
+          "text": "Yes. Nexus CRM integrates directly with Twenty7Tec. Push clients and deals from Nexus to Twenty7Tec as cases — no re-keying between systems."
         }
       },
       {
@@ -135,7 +135,7 @@
         "name": "How much does Nexus CRM cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nexus CRM starts at £49/month for solo brokers, £149/month for teams of up to 5 advisers, and £399/month for network licence with white-labelling. Early access pricing is available during the launch period."
+          "text": "Nexus CRM starts at £49/month for solo brokers, £149/month for teams of up to 5 advisers, and POA for network licence with customisable branding options. Contact us for network pricing."
         }
       }
     ]
@@ -404,17 +404,18 @@
     .cta-note { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: .5px; }
     .cta-msg { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ok); margin-top: 12px; min-height: 18px; }
     footer { border-top: 1px solid var(--border); padding: 40px 0; }
-    .footer-inner { display: grid; grid-template-columns: 1fr auto auto auto; gap: 48px; align-items: start; }
+    .footer-inner { display: grid; grid-template-columns: 1.4fr auto auto auto; gap: 48px; align-items: start; }
     .footer-brand { }
-    .footer-logo { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
-    .footer-logo-sq { width: 24px; height: 24px; border: 1.5px solid var(--gold); border-radius: 4px; }
-    .footer-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: var(--text); }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .footer-logo-sq { width: 28px; height: 28px; border: 1.5px solid var(--gold); border-radius: 5px; position: relative; }
+    .footer-logo-sq::after { content: ''; position: absolute; top: 6px; left: 6px; width: 14px; height: 14px; background: var(--gold); border-radius: 2px; opacity: 0.25; }
+    .footer-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--text); letter-spacing: 0.3px; }
     .footer-logo-text span { color: var(--gold); }
-    .footer-tagline { font-size: 12px; color: var(--muted); max-width: 220px; line-height: 1.6; }
-    .footer-col h4 { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
-    .footer-col a { display: block; font-size: 12px; color: var(--muted); margin-bottom: 7px; transition: color .12s; }
-    .footer-col a:hover { color: var(--text); }
-    .footer-bottom { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; }
+    .footer-tagline { font-size: 13px; color: var(--text2); max-width: 260px; line-height: 1.6; }
+    .footer-col h4 { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--text2); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--text2); margin-bottom: 8px; transition: color .12s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; font-size: 11px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; gap: 24px; flex-wrap: wrap; }
     .theme-toggle { background: none; border: 1px solid var(--border); border-radius: var(--r); width: 34px; height: 34px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .15s; }
     .theme-toggle:hover { border-color: var(--gold); }
     .theme-toggle svg { width: 16px; height: 16px; stroke: var(--muted); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; transition: stroke .15s; }
@@ -544,9 +545,9 @@
           <span class="logo-pill">Twenty7Tec</span>
           <span class="logo-pill">Companies House</span>
           <span class="logo-pill">Typeform</span>
-          <span class="logo-pill">Make.com</span>
-          <span class="logo-pill">Telegram</span>
-          <span class="logo-pill">Synergy Network</span>
+          <span class="logo-pill">Ideal Postcodes</span>
+          <span class="logo-pill">EPC Register</span>
+          <span class="logo-pill">Open API</span>
         </div>
       </div>
     </section>
@@ -579,7 +580,7 @@
             <div class="problem-card-label">Nexus CRM</div>
             <div class="problem-item"><div class="p-icon ok" aria-hidden="true">&#10003;</div><span>BTL, bridging, development finance, HMO, commercial — built in natively, no configuration needed</span></div>
             <div class="problem-item"><div class="p-icon ok" aria-hidden="true">&#10003;</div><span>Pipeline stages that match how you actually work — Enquiry, DIP, Packaged, Submitted, Offered, Completed</span></div>
-            <div class="problem-item"><div class="p-icon ok" aria-hidden="true">&#10003;</div><span>Two-way Twenty7Tec sync — push clients and cases, pull sourcing data back automatically</span></div>
+            <div class="problem-item"><div class="p-icon ok" aria-hidden="true">&#10003;</div><span>Twenty7Tec integration — push clients and cases directly, no re-keying between systems</span></div>
             <div class="problem-item"><div class="p-icon ok" aria-hidden="true">&#10003;</div><span>Companies House auto-population — enter a company name and get the full record instantly</span></div>
             <div class="problem-item"><div class="p-icon ok" aria-hidden="true">&#10003;</div><span>Priced for brokerages — not enterprise sales teams</span></div>
           </div>
@@ -626,8 +627,8 @@
           <article class="feature-card" role="listitem">
             <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
             <h3 class="feature-title">Twenty7Tec Sync</h3>
-            <p class="feature-body">Two-way integration with Twenty7Tec. Push clients and cases from Nexus, pull sourcing data back. One source of truth — no double-entry.</p>
-            <span class="feature-tag">Two-way sync</span>
+            <p class="feature-body">Push clients and cases from Nexus directly into Twenty7Tec. No double-entry, no switching between systems — one click and it's done.</p>
+            <span class="feature-tag">Push to T7T</span>
           </article>
           <article class="feature-card" role="listitem">
             <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
@@ -663,11 +664,11 @@
         <h2 id="integrations-heading">Connects to<br /><em>your whole stack.</em></h2>
         <p class="section-sub">Nexus sits at the centre of your workflow — pulling data in from every source and pushing it where it needs to go.</p>
         <div class="int-grid" role="list">
-          <div class="int-card" role="listitem"><div class="int-icon">T7</div><div><div class="int-name">Twenty7Tec</div><div class="int-desc">Two-way client and case synchronisation</div></div></div>
+          <div class="int-card" role="listitem"><div class="int-icon">T7</div><div><div class="int-name">Twenty7Tec</div><div class="int-desc">Push clients and cases directly to T7T</div></div></div>
           <div class="int-card" role="listitem"><div class="int-icon">CH</div><div><div class="int-name">Companies House</div><div class="int-desc">Automatic company data lookup via official API</div></div></div>
           <div class="int-card" role="listitem"><div class="int-icon">TF</div><div><div class="int-name">Typeform</div><div class="int-desc">Client intake forms auto-create CRM records</div></div></div>
-          <div class="int-card" role="listitem"><div class="int-icon">MK</div><div><div class="int-name">Make.com</div><div class="int-desc">Automation backbone connecting all your tools</div></div></div>
-          <div class="int-card" role="listitem"><div class="int-icon">SY</div><div><div class="int-name">Synergy Network</div><div class="int-desc">Network system integration for member firms</div></div></div>
+          <div class="int-card" role="listitem"><div class="int-icon">IP</div><div><div class="int-name">Ideal Postcodes</div><div class="int-desc">Instant UK address lookup and auto-fill</div></div></div>
+          <div class="int-card" role="listitem"><div class="int-icon">EP</div><div><div class="int-name">EPC Register</div><div class="int-desc">Energy performance data pulled automatically</div></div></div>
           <div class="int-card" role="listitem"><div class="int-icon">AP</div><div><div class="int-name">Open API</div><div class="int-desc">Connect any tool via REST API and webhooks</div></div></div>
         </div>
       </div>
@@ -708,13 +709,13 @@
           </div>
           <div class="price-card" role="listitem" aria-label="Network plan">
             <div class="price-name">Network</div>
-            <div class="price-amount"><span>£</span>399</div>
-            <div class="price-period">per month, billed monthly</div>
+            <div class="price-amount" style="font-size:36px">POA</div>
+            <div class="price-period">tailored to your network</div>
             <div class="price-desc">For networks and AR firms deploying across multiple member brokers.</div>
             <div class="price-features">
               <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Unlimited advisers</div>
-              <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>White-label option</div>
-              <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Synergy Network integration</div>
+              <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Customisable branding options</div>
+              <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Network-wide reporting</div>
               <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Everything in Team</div>
               <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Dedicated onboarding</div>
             </div>
@@ -755,10 +756,10 @@
         <h2 id="faq-heading" style="text-align:center; margin-bottom:44px">Common <em>questions.</em></h2>
         <div class="faq-list" role="list">
           <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">What makes Nexus different from HubSpot or Salesforce?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Nexus is built specifically for commercial finance — not adapted from a generic CRM. It understands BTL, bridging, development finance, DIP stages, LTV and lender workflows out of the box. You don't need to configure anything — it works the way you already work.</div></div>
-          <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">Does it integrate with Twenty7Tec?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes — two-way. Push clients and deals from Nexus to Twenty7Tec as cases. Pull sourcing data and product information back into your pipeline. Requires API access from your T7T account manager.</div></div>
+          <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">Does it integrate with Twenty7Tec?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes. Push clients and deals from Nexus directly into Twenty7Tec as cases — no re-keying between systems. Requires API access from your T7T account manager.</div></div>
           <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">How does the Companies House integration work?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">When a client submits their intake form with their limited company name, Nexus automatically queries the Companies House API and pulls their registered address, company number, incorporation date, SIC codes, directors list and company status — all pre-populated into their client record before you even open it.</div></div>
           <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">Can multiple advisers use it, and can I see their activity?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes. The Team plan supports up to 5 advisers. As the principal, you get a master broker view — you can see all clients, deals, tasks and activity across your whole firm, or switch to view as any individual adviser. Each adviser only sees their own data.</div></div>
-          <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">Is there a free trial?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">During early access we're onboarding brokers directly and offering a 30-day trial period with full access. Register your interest and we'll be in touch to get you set up.</div></div>
+
           <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">Is my data secure?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes. Nexus is hosted on enterprise-grade infrastructure with row-level security — each firm's data is completely isolated from every other firm's. All data is stored in UK/EU data centres and encrypted at rest and in transit.</div></div>
         </div>
       </div>
@@ -770,7 +771,6 @@
           <h2 id="about-heading" style="margin-bottom:24px">Built by a broker<br /><em>who needed it.</em></h2>
           <p>Nexus CRM started because no CRM on the market understood commercial finance. Every platform we tried was built for general sales teams or residential mortgage brokers. We spent hours adapting software that should have worked for us out of the box.</p>
           <p>So we built one. Not a generic CRM with bolt-ons, but a purpose-built tool designed around how commercial finance brokers actually work — from DIP stages and lender workflows to Companies House lookups and commission tracking.</p>
-          <p>Nexus is developed and operated by P3 Technologies Ltd, a UK company registered in England &amp; Wales. We're regulated, ICO-registered, and everything runs through UK and EU data centres.</p>
           <div class="about-sig">Built in the UK. Built for brokers.</div>
         </div>
       </div>
@@ -780,7 +780,7 @@
         <div class="cta-inner">
           <div class="section-label">Early Access</div>
           <h2 id="cta-heading">Get in before<br /><em>the launch.</em></h2>
-          <p>Early access members get 3 months at half price, priority onboarding, and direct input into the feature roadmap.</p>
+          <p>Register your interest for early access — priority onboarding, direct input into the feature roadmap, and first in line when we launch.</p>
           <div class="cta-form" role="form" aria-label="Early access sign up">
             <label for="cta-email" class="sr-only">Your email address</label>
             <input type="email" id="cta-email" class="cta-input" placeholder="your@email.com" autocomplete="email" />
@@ -790,7 +790,7 @@
             <div class="consent-row"><input type="checkbox" id="consent-privacy" /><label for="consent-privacy">I agree to the <a href="/privacy" target="_blank">Privacy Policy</a> and <a href="/terms" target="_blank">Terms of Service</a>.</label></div>
             <div class="consent-row"><input type="checkbox" id="consent-marketing" /><label for="consent-marketing">I'd like to receive product updates and early access news by email. You can unsubscribe at any time.</label></div>
           </div>
-          <div class="cta-note">No card required &nbsp;·&nbsp; 30-day trial &nbsp;·&nbsp; Cancel anytime</div>
+          <div class="cta-note">No commitment &nbsp;·&nbsp; Priority onboarding &nbsp;·&nbsp; Cancel anytime</div>
           <div class="cta-msg" id="cta-msg" role="status" aria-live="polite"></div>
         </div>
       </div>
@@ -828,19 +828,19 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <div>
+        <div style="max-width:480px; line-height:1.7;">
           <div>&copy; 2026 Nexus CRM. All rights reserved.</div>
-          <div style="margin-top:4px;">Nexus CRM is a trading name of P3 Technologies Ltd, registered in England &amp; Wales (company number 17180916). ICO registration: ZC133723.</div>
+          <div style="margin-top:6px;">Nexus CRM is a trading name of P3 Technologies Ltd, registered in England &amp; Wales (company number 17180916). ICO registration: ZC133723.</div>
         </div>
-        <span>
-          <a href="/privacy" style="color:var(--muted); margin-right:16px;">Privacy</a>
-          <a href="/terms" style="color:var(--muted); margin-right:16px;">Terms</a>
-          <a href="/cookies" style="color:var(--muted); margin-right:16px;">Cookies</a>
-          <a href="/aup" style="color:var(--muted); margin-right:16px;">Acceptable Use</a>
-          <a href="/sub-processors" style="color:var(--muted); margin-right:16px;">Sub-processors</a>
-          <a href="#" onclick="openCookiePrefs(); return false;" style="color:var(--muted); margin-right:16px;">Cookie Preferences</a>
+        <div style="display:flex; flex-wrap:wrap; gap:6px 18px; font-size:11px;">
+          <a href="/privacy" style="color:var(--muted);">Privacy</a>
+          <a href="/terms" style="color:var(--muted);">Terms</a>
+          <a href="/cookies" style="color:var(--muted);">Cookies</a>
+          <a href="/aup" style="color:var(--muted);">Acceptable Use</a>
+          <a href="/sub-processors" style="color:var(--muted);">Sub-processors</a>
+          <a href="#" onclick="openCookiePrefs(); return false;" style="color:var(--muted);">Cookie Preferences</a>
           <a href="mailto:hello@nexus-crm.co.uk" style="color:var(--muted);">Contact</a>
-        </span>
+        </div>
       </div>
     </div>
   </footer>
