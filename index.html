@@ -62,7 +62,7 @@
       "@type": "AggregateOffer",
       "priceCurrency": "GBP",
       "lowPrice": "49",
-      "highPrice": "149",
+      "highPrice": "199",
       "offerCount": "3"
     },
     "featureList": [
@@ -138,7 +138,7 @@
         "name": "Can multiple advisers use Nexus CRM?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Nexus CRM includes a master broker role system. The principal sees all adviser data firm-wide, while individual advisers only see their own clients, deals and tasks."
+          "text": "Yes. Nexus CRM includes a master broker role system. Everyone in the firm works from one shared client book, and the principal can filter the pipeline, tasks and reports by any adviser. Tasks stay private to each user unless assigned to a colleague."
         }
       },
       {
@@ -154,7 +154,7 @@
         "name": "How much does Nexus CRM cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nexus CRM starts at £49/month for solo brokers, £149/month for teams of up to 5 advisers, and POA for network licence with customisable branding options. Contact us for network pricing."
+          "text": "Nexus CRM starts at £49/month for solo brokers, £199/month for teams of up to 5 advisers, and POA for network licence with customisable branding options. Optional extras: NexusSign electronic signatures at £4.99/month, RenewPath renewal outreach at £13.99/month per adviser, and Portfolio Buddy from £8.99/month or £99/year."
         }
       }
     ]
@@ -395,6 +395,16 @@
     .price-features { margin-bottom: 24px; }
     .price-feature { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--text2); margin-bottom: 8px; }
     .pf-check { width: 14px; height: 14px; border-radius: 50%; background: rgba(82,163,122,.15); color: var(--ok); display: flex; align-items: center; justify-content: center; font-size: 8px; flex-shrink: 0; margin-top: 1px; }
+    .extras { max-width: 880px; margin: 40px auto 0; }
+    .extras-title { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 500; color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; text-align: center; margin: 0 0 16px; }
+    .extras-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .extra-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r2); padding: 20px 22px; }
+    .extra-top { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+    .extra-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .extra-price { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--gold); }
+    .extra-price small { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 400; color: var(--muted); }
+    .extra-desc { font-size: 12px; color: var(--text2); line-height: 1.5; margin: 0; }
+    .extras-note { font-size: 11px; color: var(--muted); text-align: center; margin: 16px 0 0; }
     .testimonials { padding: 80px 0; }
     .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
     .test-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r2); padding: 24px; }
@@ -460,7 +470,7 @@
       .container { padding: 0 20px; }
       .nav-links { display: none; }
       h1 { font-size: 36px; }
-      .problem-grid, .features-grid, .pricing-grid, .test-grid, .int-grid { grid-template-columns: 1fr; }
+      .problem-grid, .features-grid, .pricing-grid, .test-grid, .int-grid, .extras-grid { grid-template-columns: 1fr; }
       .loan-grid { grid-template-columns: repeat(3,1fr); }
       .steps { grid-template-columns: repeat(2,1fr); gap: 24px; }
       .steps::before { display: none; }
@@ -737,7 +747,7 @@
           <article class="feature-card" role="listitem">
             <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/><path d="M14 15h4"/></svg></div>
             <h3 class="feature-title">Invoices From the Case</h3>
-            <p class="feature-body">Build a branded PDF invoice from any case, with your logo and bank details, and email it to the client in one go. Prefer card payments? Connect your own Stripe account and get paid online too.</p>
+            <p class="feature-body">Build a branded PDF invoice from any case, with your logo and bank details, and email it to the client in one go. Lender proc fee invoices have their own numbering and remember each lender. Prefer card payments? Connect your own Stripe account too.</p>
             <span class="feature-tag">PDF &amp; Stripe</span>
           </article>
           <article class="feature-card" role="listitem">
@@ -763,6 +773,42 @@
             <h3 class="feature-title">EPC and Renewal Alerts</h3>
             <p class="feature-body">EPC ratings pulled from the official register for every property. Rate, term and offer expiry dates tracked so you are first in touch when a client's deal is due to end.</p>
             <span class="feature-tag">Retention</span>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h3 class="feature-title">Regulated Cases</h3>
+            <p class="feature-body">Reg. Bridge and Reg. Mortgage sit alongside your commercial products, each with its own fact find: needs, exit or mortgage requirements, and declaration. Export the lot as a PDF for the file.</p>
+            <span class="feature-tag">Reg. Bridge &amp; Reg. Mortgage</span>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15l3 3 3-3"/></svg></div>
+            <h3 class="feature-title">Fact Find Import</h3>
+            <p class="feature-body">Already have a completed fact find in Word? Upload it and Nexus fills in the fact find on the case for you. Switched on for your firm when you want it.</p>
+            <span class="feature-tag">Word upload</span>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></div>
+            <h3 class="feature-title">Development Finance, Done Properly</h3>
+            <p class="feature-body">Capture purchase price or current value, the initial loan and the development funds separately. Nexus shows LTV on the initial loan and loan to GDV including the build costs.</p>
+            <span class="feature-tag">LTV &amp; LTGDV</span>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M9 2h6"/></svg></div>
+            <h3 class="feature-title">Bridging Exit Alerts</h3>
+            <p class="feature-body">Every bridge is flagged at 50% and 75% of its term from completion, so exits never creep up on you or your client.</p>
+            <span class="feature-tag">Term tracking</span>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+            <h3 class="feature-title">Linked Cases and Duplicate Check</h3>
+            <p class="feature-body">Link a bridge to the mortgage that refinances it so the whole journey sits together. Adding a client warns you if that person or company is already on the system.</p>
+            <span class="feature-tag">Cleaner records</span>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h3 class="feature-title">Tasks You Can Hand Over</h3>
+            <p class="feature-body">Tasks stay private to each user, and you can assign one to a colleague in a click. Once assigned, it moves to their list so nothing is done twice.</p>
+            <span class="feature-tag">Task assignment</span>
           </article>
         </div>
       </div>
@@ -799,7 +845,7 @@
       <div class="container">
         <div class="section-label" style="text-align:center">Pricing</div>
         <h2 id="pricing-heading" style="text-align:center; max-width:400px; margin:0 auto 12px">Priced for<br /><em>brokerages.</em></h2>
-        <p class="section-sub" style="text-align:center; margin:0 auto 52px">No long term contracts. No per feature upsells. Everything included at each tier.</p>
+        <p class="section-sub" style="text-align:center; margin:0 auto 52px">No long term contracts. Every core feature included at each tier, with optional extras when you want them.</p>
         <div class="pricing-grid" role="list">
           <div class="price-card" role="listitem" aria-label="Solo plan">
             <div class="price-name">Solo</div>
@@ -817,7 +863,7 @@
           </div>
           <div class="price-card featured" role="listitem" aria-label="Team plan, most popular">
             <div class="price-name">Team</div>
-            <div class="price-amount"><span>£</span>149</div>
+            <div class="price-amount"><span>£</span>199</div>
             <div class="price-period">per month, billed monthly</div>
             <div class="price-desc">For growing brokerages with multiple advisers.</div>
             <div class="price-features">
@@ -826,6 +872,7 @@
               <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Adviser role management</div>
               <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Everything in Solo</div>
               <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Team activity overview</div>
+              <div class="price-feature"><div class="pf-check" aria-hidden="true">&#10003;</div>Assign tasks between advisers</div>
             </div>
             <a href="#book-demo" class="btn-primary" style="display:block; text-align:center; padding:10px;">Book a Demo</a>
           </div>
@@ -844,6 +891,16 @@
             <a href="#early-access" class="btn-outline" style="display:block; text-align:center; padding:10px;">Talk to Us</a>
           </div>
         </div>
+
+        <div class="extras" aria-labelledby="extras-heading">
+          <h3 id="extras-heading" class="extras-title">Optional extras</h3>
+          <div class="extras-grid" role="list">
+            <div class="extra-card" role="listitem"><div class="extra-top"><span class="extra-name">NexusSign</span><span class="extra-price">£4.99<small> a month</small></span></div><p class="extra-desc">Electronic signatures from the case, unlimited documents, in your own firm's branding. One price for the whole firm.</p></div>
+            <div class="extra-card" role="listitem"><div class="extra-top"><span class="extra-name">RenewPath</span><span class="extra-price">£13.99<small> per adviser a month</small></span></div><p class="extra-desc">Automated renewal outreach so you are in touch before every client's deal ends, not after.</p></div>
+            <div class="extra-card" role="listitem"><div class="extra-top"><span class="extra-name">Portfolio Buddy</span><span class="extra-price">£8.99<small> a month or £99 a year</small></span></div><p class="extra-desc">Fills each lender's own BTL portfolio template from one set of property details. No retyping the same schedule.</p></div>
+          </div>
+          <p class="extras-note">All prices billed monthly unless stated. No VAT is charged.</p>
+        </div>
       </div>
     </section>
     <section class="faq" id="faq" aria-labelledby="faq-heading">
@@ -858,6 +915,8 @@
 
           <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">What tools are there for business loans?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Business loans sit in the same pipeline as your property cases, with their own tool built in: the Accounts Reader. Drop the client's accounts onto the case and it reads them, then works out turnover, profit and EBITDA for each year, ready to present to the lender.</div></div>
           <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">Can clients sign documents electronically?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes, with NexusSign, an optional add on at £4.99 a month with unlimited documents. Send a document from the case, the client verifies with a one time email code and signs on any device, and the signed copy and audit trail are saved back to the case automatically. Signing emails carry your own firm's branding.</div></div>
+          <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">Can I use Nexus for regulated cases?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes. Reg. Bridge and Reg. Mortgage are built in as products, each with its own fact find covering needs and objectives, the exit or mortgage requirements, and the advice declaration. You can export the full fact find as a PDF, and link a regulated bridge to the mortgage that refinances it.</div></div>
+          <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">What optional extras are there?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">NexusSign electronic signatures at £4.99 a month for the whole firm, RenewPath renewal outreach at £13.99 a month per adviser, and Portfolio Buddy for lender BTL portfolio templates from £8.99 a month or £99 a year. Add them when you sign up or at any time after.</div></div>
           <div class="faq-item" role="listitem"><div class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" role="button" tabindex="0">Is my data secure?<span class="faq-icon" aria-hidden="true">+</span></div><div class="faq-a">Yes. Nexus is hosted on enterprise grade infrastructure with row level security. Each firm's data is completely isolated from every other firm's. All data is stored in UK/EU data centres and encrypted at rest and in transit.</div></div>
         </div>
       </div>
